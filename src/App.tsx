@@ -1,12 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDoom from 'react-dom/client';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -23,4 +20,8 @@ function App() {
   );
 }
 
-export default App;
+const root = ReactDoom.createRoot(
+  document.getElementById('root') as HTMLElement,
+);
+
+root.render(<App />);
