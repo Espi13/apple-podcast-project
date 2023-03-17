@@ -31,7 +31,6 @@ module.exports = (env, argv) => {
     devServer: {
       static: path.join(__dirname, "public"),
       historyApiFallback: true,
-      host: "localhost",
       port: 3000,
       compress: true,
       open: true,

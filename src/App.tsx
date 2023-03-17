@@ -1,27 +1,36 @@
-import ReactDoom from 'react-dom/client';
+import { createTheme, ThemeProvider } from "@mui/material";
+import ReactDoom from "react-dom/client";
+import { RouterProvider } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
+import Podcasts, { loader as podcastsLoader } from "./routes/Podcasts";
+import RootLayout from "./routes/RootLayout";
+
+const theme = createTheme({});
 
 export default function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        {
+          path: "/",
+          loader: podcastsLoader,
+          element: <Podcasts />,
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 const root = ReactDoom.createRoot(
-  document.getElementById('root') as HTMLElement,
+  document.getElementById("root") as HTMLElement
 );
 
-root.render(<App />);
+root.render(
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>
+);
