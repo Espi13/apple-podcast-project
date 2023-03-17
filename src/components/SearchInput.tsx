@@ -1,5 +1,5 @@
-import { Chip, Grid, TextField } from "@mui/material";
-import { ChangeEvent, FC, useState } from "react";
+import { Chip, Grid, TextField } from '@mui/material';
+import { ChangeEvent, FC, useState } from 'react';
 
 interface ISearchInputProps {
   numPodcasts: number;
@@ -7,7 +7,7 @@ interface ISearchInputProps {
 }
 
 const SearchInput: FC<ISearchInputProps> = ({ numPodcasts, onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handlerSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -17,9 +17,9 @@ const SearchInput: FC<ISearchInputProps> = ({ numPodcasts, onSearch }) => {
   return (
     <Grid
       sx={{
-        justifyContent: "flex-end",
-        display: "flex",
-        alignItems: "center",
+        justifyContent: 'flex-end',
+        display: 'flex',
+        alignItems: 'center',
         mt: 2,
       }}
     >

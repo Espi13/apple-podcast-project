@@ -1,20 +1,20 @@
-import { createTheme, ThemeProvider } from "@mui/material";
-import ReactDoom from "react-dom/client";
-import { RouterProvider } from "react-router";
-import { createBrowserRouter } from "react-router-dom";
-import Podcasts, { loader as podcastsLoader } from "./routes/Podcasts";
-import RootLayout from "./routes/RootLayout";
+import { createTheme, ThemeProvider } from '@mui/material';
+import ReactDoom from 'react-dom/client';
+import { RouterProvider } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
+import Podcasts, { loader as podcastsLoader } from './routes/Podcasts';
+import RootLayout from './routes/RootLayout';
 
 const theme = createTheme({});
 
 export default function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <RootLayout />,
       children: [
         {
-          path: "/",
+          path: '/',
           loader: podcastsLoader,
           element: <Podcasts />,
         },
@@ -26,11 +26,11 @@ export default function App() {
 }
 
 const root = ReactDoom.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <ThemeProvider theme={theme}>
     <App />
-  </ThemeProvider>
+  </ThemeProvider>,
 );

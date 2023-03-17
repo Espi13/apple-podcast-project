@@ -1,11 +1,11 @@
-import { AppBar, Container, Link, Typography } from "@mui/material";
-import { blue } from "@mui/material/colors";
-import { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { AppBar, Container, Link, Typography } from '@mui/material';
+import { blue } from '@mui/material/colors';
+import { FC } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 const MainHeader: FC = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: "white" }}>
+    <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container>
         <Typography
           variant="h5"

@@ -1,8 +1,8 @@
-import { Grid } from "@mui/material";
-import { FC, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import PodcastModel from "../models/podcast.model";
-import Podcast from "./Podcast";
+import { Grid } from '@mui/material';
+import { FC, useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import PodcastModel from '../models/podcast.model';
+import Podcast from './Podcast';
 
 interface IPodcastListProps {
   searchTerm: string;
@@ -19,7 +19,7 @@ const PodcastList: FC<IPodcastListProps> = ({ searchTerm, setNumPodcast }) => {
       const filteredPodcasts = podcasts.filter(
         (podcast) =>
           podcast.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          podcast.artist.toLowerCase().includes(searchTerm.toLowerCase())
+          podcast.artist.toLowerCase().includes(searchTerm.toLowerCase()),
       );
       setPodcastList(filteredPodcasts);
       setNumPodcast(filteredPodcasts.length);
@@ -48,7 +48,7 @@ const PodcastList: FC<IPodcastListProps> = ({ searchTerm, setNumPodcast }) => {
           title={podcast.title}
           author={podcast.artist}
           onClick={() => {
-            console.log("clicked");
+            console.log('clicked');
           }}
         />
       ))}
