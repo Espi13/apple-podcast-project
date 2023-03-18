@@ -19,20 +19,48 @@ const Podcasts: FC = () => {
 export default Podcasts;
 
 export const loader = async () => {
-  const response = await fetch(
-    'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
-  );
-  const resData = await response.json();
-  const { feed } = resData;
+  if (checkTimePassed()) {
+    const response = await fetch(
+      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
+    );
+    const resData = await response.json();
+    const { feed } = resData;
 
-  const podcasts = feed.entry.map((podcast: any) => {
-    return {
-      id: podcast.id.attributes['im:id'],
-      artist: podcast['im:artist'].label,
-      image: podcast['im:image'][2].label,
-      title: podcast.title.label,
-    };
-  }) as PodcastModel[];
+    const podcasts = feed.entry.map((podcast: any) => {
+      return {
+        id: podcast.id.attributes['im:id'],
+        artist: podcast['im:artist'].label,
+        image: podcast['im:image'][2].label,
+        title: podcast.title.label,
+      };
+    }) as PodcastModel[];
 
-  return podcasts;
+    localStorage.setItem('podcasts', JSON.stringify(podcasts));
+    localStorage.setItem('podcastTimer', new Date().toString());
+
+    return podcasts;
+  } else {
+    const podcasts = localStorage.getItem('podcasts');
+    if (podcasts) {
+      return JSON.parse(podcasts);
+    }
+    return [];
+  }
+};
+
+const checkTimePassed = () => {
+  const podcastTimer = localStorage.getItem('podcastTimer');
+  if (podcastTimer) {
+    const today = new Date('March 19, 2023 11:25:00').getTime(); //new Date("March 19, 2023 11:25:00").getTime();
+    const podcastDate = new Date(podcastTimer).getTime();
+    const result = (today - podcastDate) / (24 * 3600 * 1000);
+
+    if (result > 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
 };

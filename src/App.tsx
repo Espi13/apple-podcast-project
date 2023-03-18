@@ -3,6 +3,9 @@ import ReactDoom from 'react-dom/client';
 import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import Podcasts, { loader as podcastsLoader } from './routes/Podcasts';
+import PodcastDetails, {
+  loader as podcastDetailsLoader,
+} from './routes/PodcastDetails';
 import RootLayout from './routes/RootLayout';
 
 const theme = createTheme({});
@@ -17,6 +20,11 @@ export default function App() {
           path: '/',
           loader: podcastsLoader,
           element: <Podcasts />,
+        },
+        {
+          path: '/podcasts/:podcastId',
+          loader: ({ params }) => podcastDetailsLoader(params.podcastId),
+          element: <PodcastDetails />,
         },
       ],
     },

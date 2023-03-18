@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import PodcastModel from '../models/podcast.model';
 import Podcast from './Podcast';
 
@@ -10,6 +10,8 @@ interface IPodcastListProps {
 }
 
 const PodcastList: FC<IPodcastListProps> = ({ searchTerm, setNumPodcast }) => {
+  const navigate = useNavigate();
+
   const podcasts = useLoaderData() as PodcastModel[];
 
   const [podcastList, setPodcastList] = useState<PodcastModel[]>([]);
@@ -48,7 +50,7 @@ const PodcastList: FC<IPodcastListProps> = ({ searchTerm, setNumPodcast }) => {
           title={podcast.title}
           author={podcast.artist}
           onClick={() => {
-            console.log('clicked');
+            navigate(`/podcasts/${podcast.id}`);
           }}
         />
       ))}

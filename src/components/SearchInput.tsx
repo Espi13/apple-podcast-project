@@ -26,7 +26,7 @@ const SearchInput: FC<ISearchInputProps> = ({ numPodcasts, onSearch }) => {
       <Chip label={numPodcasts} color="primary" sx={{ mr: 2 }} />
       <TextField
         id="search-input"
-        label="FilterPodcast"
+        label="Filter podcast..."
         variant="outlined"
         value={searchTerm}
         onChange={handlerSearch}
