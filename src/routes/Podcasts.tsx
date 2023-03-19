@@ -22,8 +22,13 @@ export default Podcasts;
 export const loader = async () => {
   if (checkTimePassed('podcastTimer')) {
     const response = await fetch(
-      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
+      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
     );
+
+    if (response.status == 400) {
+      console.error('Error: ', response.status);
+      return [];
+    }
     const resData = await response.json();
     const { feed } = resData;
 

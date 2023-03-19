@@ -16,7 +16,7 @@ const PodcastDetails: FC = () => {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ marginTop: 4 }}>
+    <Container maxWidth='xl' sx={{ marginTop: 4 }}>
       <Grid container columnSpacing={{ xs: 1, sm: 2, md: 12 }}>
         <Grid item xs={12} sm={6} md={4}>
           <PodcastCardDetails
@@ -57,12 +57,13 @@ export const loader = async (podcastId: string | undefined) => {
   if (checkTimePassed('podcastDetailsTime')) {
     const response: any = await fetch(
       `https://api.allorigins.win/raw?url=${encodeURIComponent(
-        `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode`,
-      )}`,
+        `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode`
+      )}`
     );
 
     if (response.status == 400) {
-      throw new Error('Podcast not found');
+      console.error('Error: ', response.status);
+      return [];
     }
     const resPodcast = await response.json();
 

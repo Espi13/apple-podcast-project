@@ -11,7 +11,7 @@ const Episode: FC = () => {
   const podcastEpisode = useLoaderData() as PodcastDetailModel;
 
   return (
-    <Container maxWidth="xl" sx={{ marginTop: 4 }}>
+    <Container maxWidth='xl' sx={{ marginTop: 4 }}>
       <Grid container columnSpacing={{ xs: 1, sm: 2, md: 12 }}>
         <Grid item xs={12} sm={6} md={4}>
           <PodcastCardDetails
@@ -34,7 +34,7 @@ export default Episode;
 
 export const loader = async (
   podcastId: string | undefined,
-  episodeId: string | undefined,
+  episodeId: string | undefined
 ) => {
   const podcastDetailsStorage = localStorage.getItem('podcastDetails');
   if (podcastDetailsStorage) {
@@ -44,7 +44,7 @@ export const loader = async (
       !checkTimePassed('podcastDetailsTime')
     ) {
       const episode = podcastDetailsParsed.episodes.find(
-        (episode: any) => episode.id == episodeId,
+        (episode: any) => episode.id == episodeId
       );
       return {
         id: podcastDetailsParsed.id,
@@ -69,12 +69,13 @@ export const loader = async (
 
   const response = await fetch(
     `https://api.allorigins.win/raw?url=${encodeURIComponent(
-      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode`,
-    )}`,
+      `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode`
+    )}`
   );
 
   if (response.status == 400) {
-    throw new Error('Podcast not found');
+    console.error('Error: ', response.status);
+    return [];
   }
 
   const resPodcast = await response.json();
@@ -82,7 +83,7 @@ export const loader = async (
   const podcastInfo = resPodcast.results[0];
   resPodcast.results.shift();
   const episode = resPodcast.results.find(
-    (episode: any) => episode.trackId == episodeId,
+    (episode: any) => episode.trackId == episodeId
   );
 
   const podcastDetails = {

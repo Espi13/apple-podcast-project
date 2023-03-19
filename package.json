@@ -27,6 +27,7 @@
     "start": "webpack serve --mode development",
     "production": "webpack serve --mode production",
     "build": "webpack --mode production",
+    "test": "react-scripts test",
     "prepare": "husky install",
     "lint": "eslint --ext .jsx,.js,.ts,.tsx --fix src",
     "pre-commit": "npm run lint"
