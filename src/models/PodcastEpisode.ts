@@ -4,6 +4,7 @@ class PodcastEpisodeModel {
   description: string;
   duration: number;
   date: string;
+  audio: string;
 
   constructor(
     id: string,
@@ -11,12 +12,14 @@ class PodcastEpisodeModel {
     description: string,
     duration: number,
     date: string,
+    audio: string,
   ) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.duration = duration;
     this.date = date;
+    this.audio = audio;
   }
 }
 

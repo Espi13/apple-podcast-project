@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "@mui/x-data-grid": "^6.0.2",
     "@testing-library/jest-dom": "^5.16.5",
@@ -14,6 +15,7 @@
     "@types/node": "^16.18.16",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "html-react-parser": "^3.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
@@ -23,9 +25,8 @@
   },
   "scripts": {
     "start": "webpack serve --mode development",
+    "production": "webpack serve --mode production",
     "build": "webpack --mode production",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "eslint --ext .jsx,.js,.ts,.tsx --fix src",
     "pre-commit": "npm run lint"
@@ -58,6 +59,7 @@
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-prettier": "^4.2.1",

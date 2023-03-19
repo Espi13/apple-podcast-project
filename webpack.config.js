@@ -4,11 +4,26 @@ module.exports = (env, argv) => {
   const { mode } = argv;
   const isProduction = mode === "production";
   return {
-    entry: "./src/App.tsx",
+    entry: {
+      main: "./src/App.tsx",
+      podcast: "./src/routes/Podcasts.tsx",
+      podcastDetails: "./src/routes/PodcastDetails.tsx",
+      episode: "./src/routes/Episode.tsx",
+    },
     output: {
-      filename: isProduction ? "[name].[contenthash].js" : "main.js",
+      filename: isProduction ? "[name].[contenthash].js" : "[name].js",
       publicPath: "/",
       path: path.resolve(__dirname, "build"),
+    },
+    optimization: {
+      moduleIds: "deterministic",
+      runtimeChunk: "single",
+      splitChunks: {
+        chunks: "all",
+      },
+    },
+    performance: {
+      hints: false,
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],

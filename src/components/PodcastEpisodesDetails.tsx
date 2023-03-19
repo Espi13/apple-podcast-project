@@ -4,9 +4,10 @@ import { GridColDef } from '@mui/x-data-grid/models';
 import { FC } from 'react';
 import PodcastEpisodeModel from '../models/PodcastEpisode';
 
-const PodcastEpisodesDetails: FC<{ episodes: PodcastEpisodeModel[] }> = ({
-  episodes,
-}) => {
+const PodcastEpisodesDetails: FC<{
+  episodes: PodcastEpisodeModel[];
+  onClick: (id: number) => void;
+}> = ({ episodes, onClick }) => {
   const rows = episodes.map((episode) => {
     return {
       id: episode.id,
@@ -40,9 +41,7 @@ const PodcastEpisodesDetails: FC<{ episodes: PodcastEpisodeModel[] }> = ({
                   },
                 },
               }}
-              onRowClick={(row) => {
-                console.log('row: ', row);
-              }}
+              onRowClick={(row) => onClick(row.id as number)}
             />
           </Box>
         </CardContent>

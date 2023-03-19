@@ -11,5 +11,7 @@
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true
 }

@@ -50,7 +50,7 @@ const PodcastList: FC<IPodcastListProps> = ({ searchTerm, setNumPodcast }) => {
           title={podcast.title}
           author={podcast.artist}
           onClick={() => {
-            navigate(`/podcasts/${podcast.id}`);
+            navigate(`/podcast/${podcast.id}`);
           }}
         />
       ))}

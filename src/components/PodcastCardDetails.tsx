@@ -6,8 +6,10 @@ import {
   Typography,
 } from '@mui/material';
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface IPodcastCardDetailsProps {
+  id: string;
   title: string;
   artist: string;
   summary: string;
@@ -15,19 +17,23 @@ interface IPodcastCardDetailsProps {
 }
 
 const PodcastCardDetails: FC<IPodcastCardDetailsProps> = ({
+  id,
   title,
   artist,
   summary,
   image,
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <Card>
+    <Card onClick={() => navigate(`/podcast/${id}`)} sx={{ cursor: 'pointer' }}>
       <CardMedia
         image={image}
         sx={{
           height: 300,
           width: 300,
           margin: '50px auto',
+          borderRadius: '10px',
         }}
       />
 

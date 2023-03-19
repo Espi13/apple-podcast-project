@@ -6,6 +6,7 @@ const RootLayout: FC = () => {
   return (
     <>
       <MainHeader />
+
       <Outlet />
     </>
   );

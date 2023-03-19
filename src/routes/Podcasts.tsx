@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import PodcastList from '../components/PodcastList';
 import SearchInput from '../components/SearchInput';
 import PodcastModel from '../models/podcast.model';
+import { checkTimePassed } from '../utils/checkTimePassed';
 
 const Podcasts: FC = () => {
   const [numPodcasts, setNumPodcasts] = useState(0);
@@ -19,7 +20,7 @@ const Podcasts: FC = () => {
 export default Podcasts;
 
 export const loader = async () => {
-  if (checkTimePassed()) {
+  if (checkTimePassed('podcastTimer')) {
     const response = await fetch(
       'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json',
     );
@@ -46,21 +47,4 @@ export const loader = async () => {
     }
     return [];
   }
-};
-
-const checkTimePassed = () => {
-  const podcastTimer = localStorage.getItem('podcastTimer');
-  if (podcastTimer) {
-    const today = new Date('March 19, 2023 11:25:00').getTime(); //new Date("March 19, 2023 11:25:00").getTime();
-    const podcastDate = new Date(podcastTimer).getTime();
-    const result = (today - podcastDate) / (24 * 3600 * 1000);
-
-    if (result > 1) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  return true;
 };
